@@ -14,12 +14,14 @@ This project seeks to examine any trends in how online recipes are constructed
 and rated, in doing so attempting to establish a distinction between recipes 
 predicated on their inclusion or exclusion of peanut butter. The resulting 
 conclusions serve to offer insight on how peanut butter, a product favored by 
-many for both its palatable and nutrional traits, can help determine the 
+many for both its palatable and nutrional traits, can help deiermine the 
 quality of recipes.
 
 Below one can find relevant information about the dataset, including its 
 rows and columns:
+
 Number of Rows: 234,429
+
 Columns:
  - name (Recipe name)
  - recipe_id (Recipe ID)
@@ -43,6 +45,9 @@ Columns:
 ## Data Cleaning and Exploratory Data Analysis
 
 ### Data Cleaning
+
+The following steps were taken to clean the data in preparation for further 
+analysis:
 
 
 ### Univariate Analysis
