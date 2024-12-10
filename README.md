@@ -106,10 +106,31 @@ EMBED DATAFRAME HEAD
 PLOT FOR 1 COLUMN, 1-2 sent. explanation w/ description/interpretation
 of trends
 
+<iframe
+  src="assets/has_pb_bar.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 ### Bivariate Analysis
 
 PLOT FOR TWO COLUMNS, 1-2 sent. explanation w/ description/interpretation
 of trends
+
+<iframe
+  src="assets/ratings_by_pb_hist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+<iframe
+  src="assets/sat_fat_by_pb_hist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 ### Interesting Aggregates
 
