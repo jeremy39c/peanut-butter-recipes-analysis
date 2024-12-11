@@ -160,24 +160,19 @@ meaning the smoother distribution could be the result of having more points.
 
 ### Interesting Aggregates
 
-|   avg_rating Mean |
-|------------------:|
-|           4.53571 |
-|           4.62482 |
+| contains_pb   |   avg_rating Mean |
+|:--------------|------------------:|
+| True          |           4.53571 |
+| False         |           4.62482 |
 
 The above
 
-|   avg_rating Mean |
-|------------------:|
-|           4.53571 |
-|           4.62482 |
-|   saturated fat Mean |
-|---------------------:|
-|              28.2987 |
-|              33.4937 |
+| contains_pb   |   saturated fat Mean |
+|:--------------|---------------------:|
+| True          |              28.2987 |
+| False         |              33.4937 |
 
 The above
-
 
 
 
