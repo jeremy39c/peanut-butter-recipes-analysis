@@ -345,12 +345,6 @@ insights from the data.
 
 ## Final Model
 
-STATE FEATURES ADDED AND WHY THEY ARE GOOD FOR DATA AND PREDICTION TASK (CAN'T
-JUST SAY THEY IMPROVED ACCURACY, INSTEAD TALK ABOUT WHY FEATURES IMPROVED
-MODEL'S PERFORMANCE); DESCRIBE CHOSEN MODELING ALGORITHM, HYPERPARAMETERS THAT
-PERFORMED BEST, METHOD USED TO SELECT HYPERPARAMETERS, OVERALL MODEL; DESCRIBE
-HOW FINAL PERFORMANCE IS IMPROVEMENT OVER BASELINE MODEL
-
 Adding onto the baseline model, the selected features include the previous 
 features in addition to the protein, total fat, calories, and sodium columns, 
 which are all quantitative and not encoded. These features were chosen based on 
@@ -388,9 +382,6 @@ features, better hyperparameter selections, or a different modeling algorithm.
 
 
 ## Fairness Analysis
-
-CLEARLY STATE CHOICE OF X AND Y, EVAL METRIC, HYPOTHESES, TEST STATISTIC, 
-SIGNIFICANCE LEVEL, RESULTING P-VALUE, CONCLUSION
 
 From observing in the EDA that the vast majority of reviews for all recipes had 
 a rating value of 5, one interesting fairness analysis is a comparison of the 
