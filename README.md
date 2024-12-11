@@ -197,11 +197,6 @@ the data.
 
 ### Missingness Dependency
 
-PRESENT, INTERPRET MISSINGNESS PERMUTATION TESTS' RESULTS WITH RESPECT TO 
-DATA, QUESTION; EMBED PLOT RELATED TO MISSINGNESS EXPLORATION (distribution of
-one column when another is missing/not missing, empirical distribution of test 
-statistic used in permutation tests + observed statistic)
-
 One column that can be evaluated in regards to its missingness is the 
 description column, which contains the description of the recipe being 
 reviewed. To identify whether the data is MCAR or MAR when conditioned on 
@@ -213,10 +208,10 @@ is missing and not missing.
 In adhering to the above procedure, one permutation test was performed to 
 determine the likely missingness of the description column conditioned on the 
 minutes column. When using the absolute difference in means of minutes as the 
-test statistic and a significance level of 0.05, the calculated p-value was 
-equal to 0.433, meaning there is not evidence to reject the null hypothesis, 
-that there is a difference in the distribution of minutes depending on the 
-missingness of description, meaning description is most likely MCAR conditioned 
+test statistic and a significance level of 0.05, the p-value was calculated to
+be 0.433, meaning there is not evidence to reject the null hypothesis, that 
+there is not a difference in the distribution of minutes depending on the 
+missingness of description. So, description is most likely MCAR conditioned 
 on minutes.
 
 Another permutation test performed examined the likely missingness of the 
@@ -238,12 +233,55 @@ missing:
   frameborder="0"
 ></iframe>
 
+Since the shapes of the distributions are relatively similar, it is appropriate 
+to use as the test statistic the absolute difference of means to measure the 
+difference between the distributions.
+
+When performing the performing the permutation test at a significance level of 
+0.05, the p-value was calculated to be 0.014, meaning there is sufficient 
+evidence to reject the null hypothesis and conclude that there is a difference 
+in the distribution of rating depending on the missingness of description.
+So, description is most likely MAR conditioned on rating.
+
 
 
 ## Hypothesis Testing
 
-STATE HYPOTHESES, TEST STATISTIC, SIGNIFICANCE LEVEL, P-VALUE, CONCLUSION;
-justify why choices are good for answering question
+In considering how recipes with peanut butter are different from other recipes, 
+a hypothesis test can be performed to compare the distribution of average 
+ratings for the two groups. Because it was observed from EDA that recipes with 
+peanut butter had a slightly lower average rating mean value, the hypotheses 
+should ideally look at the alternative reality where the average ratings of 
+these recipes are really less than other recipes.
+
+The hypotheses used are as follows:
+
+Null Hypothesis: The average ratings of recipes containing peanut butter are 
+the same as recipes not containing peanut butter.
+Alternative Hypothesis: The average ratings of recipes containing peanut butter 
+are less than those for recipes not containing peanut butter.
+
+An appropriate test statistic to be used is the difference in group means 
+between non-peanut butter and peanut butter recipes since higher values 
+indicate a greater difference in average ratings in favor of non-peanut butter 
+recipes. The significance level was set at alpha = 0.05.
+
+From performing a permutation test under the aforementioned specifications, 
+the following empirical distribution for the test statistic along with the 
+calculated p-value is displayed below:
+
+<iframe
+  src="assets/missing_rating_dist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Since the calculated p-value is less than 0.05, there is sufficient evidence to 
+reject the null hypothesis.
+So, there is reason to believe that the average ratings of recipes containing 
+peanut butter are indeed lower than those of recipes not containing peanut 
+butter.
 
 
 
