@@ -268,7 +268,7 @@ recipes. The significance level was set at alpha = 0.05.
 
 From performing a permutation test under the aforementioned specifications, 
 the following empirical distribution for the test statistic along with the 
-calculated p-value is displayed below:
+observed test statistic is displayed below:
 
 <iframe
   src="assets/test_stat_dist.html"
