@@ -271,7 +271,7 @@ the following empirical distribution for the test statistic along with the
 calculated p-value is displayed below:
 
 <iframe
-  src="assets/missing_rating_dist.html"
+  src="assets/test_stat_dist.html"
   width="800"
   height="600"
   frameborder="0"
