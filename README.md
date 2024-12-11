@@ -165,14 +165,21 @@ meaning the smoother distribution could be the result of having more points.
 | True          |           4.53571 |
 | False         |           4.62482 |
 
-The above
+The above table provides the mean of the average ratings for recipes that 
+contain and do not contain peanut butter. While it can be seen that non-peanut
+butter recipes have a slightly higher average rating mean, it cannot be 
+concluded that the difference is significant enough to show that recipes with 
+peanut butter are rated lower on average without further testing.
 
 | contains_pb   |   saturated fat Mean |
 |:--------------|---------------------:|
 | True          |              28.2987 |
 | False         |              33.4937 |
 
-The above
+The above table provides the mean of the saturated fat content for recipes that
+contain and do not contain peanut butter. Again, while it can be observed that
+non-peanut butter recipes have a higher mean value, this does not necessarily 
+signify a true difference between the groups.
 
 
 
@@ -180,8 +187,13 @@ The above
 
 ### NMAR Analysis
 
-STATEMENT ON A COLUMN IN DATA THAT IS NMAR, explanation of reasoning +
-additional data to obtain that could explain missingness; USE "NMAR"
+Through examining the data, it was found that the name, description, and rating
+columns all contain missing values. However, there does not seem to be any 
+indications or intuitive reasonings that can point to any of these missing data
+being likely "NMAR". That is, for each of these column values, there is not a 
+clear identification of specific groups who would be more likely to not include
+information when making a review so that there is a systematic missingness in 
+the data.
 
 ### Missingness Dependency
 
@@ -189,6 +201,42 @@ PRESENT, INTERPRET MISSINGNESS PERMUTATION TESTS' RESULTS WITH RESPECT TO
 DATA, QUESTION; EMBED PLOT RELATED TO MISSINGNESS EXPLORATION (distribution of
 one column when another is missing/not missing, empirical distribution of test 
 statistic used in permutation tests + observed statistic)
+
+One column that can be evaluated in regards to its missingness is the 
+description column, which contains the description of the recipe being 
+reviewed. To identify whether the data is MCAR or MAR when conditioned on 
+other columns of the dataset, one appropriate method would be performing 
+permutation tests that consider whether there is a significant difference 
+between the distribution of the data when the value in the description column 
+is missing and not missing.
+
+In adhering to the above procedure, one permutation test was performed to 
+determine the likely missingness of the description column conditioned on the 
+minutes column. When using the absolute difference in means of minutes as the 
+test statistic and a significance level of 0.05, the calculated p-value was 
+equal to 0.433, meaning there is not evidence to reject the null hypothesis, 
+that there is a difference in the distribution of minutes depending on the 
+missingness of description, meaning description is most likely MCAR conditioned 
+on minutes.
+
+Another permutation test performed examined the likely missingness of the 
+description column conditioned on the rating column.
+Below are the distributions of rating when the description is missing and not
+missing:
+
+<iframe
+  src="assets/missing_rating_dist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+<iframe
+  src="assets/nonmissing_rating_dist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 
 
