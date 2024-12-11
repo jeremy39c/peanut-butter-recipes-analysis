@@ -249,10 +249,10 @@ So, description is most likely MAR conditioned on rating.
 
 In considering how recipes with peanut butter are different from other recipes, 
 a hypothesis test can be performed to compare the distribution of average 
-ratings for the two groups. Because it was observed from EDA that recipes with 
-peanut butter had a slightly lower average rating mean value, the hypotheses 
-should ideally look at the alternative reality where the average ratings of 
-these recipes are really less than other recipes.
+ratings for the two groups. Because it was observed from the EDA that recipes 
+with peanut butter had a slightly lower average rating mean value, the 
+hypotheses should ideally look at the alternative reality where the average 
+ratings of these recipes are really less than other recipes.
 
 The hypotheses used are as follows:
 
@@ -287,18 +287,59 @@ butter.
 
 ## Framing a Prediction Problem
 
-STATE PREDICTION PROBLEM AND TYPE; STATE WHETHER BINARY OR MULTICLASS 
-CLASSIFICATION; REPORT RESPONSE VARIABLE (PREDICTORY), WHY YOU CHOSE IT, 
-METRIC TO EVALUATE MODEL AND WHY CHOSEN OVER OTHERS; JUSTIFY INFORMATION AT 
-"TIME OF PREDICTION" AND ONLY USE THOSE FEATURES FOR TRAINING
+In identifying any distinguishing factors between recipes containing peanut 
+butter and other recipes, a significant prediction problem is being able to 
+predict whether or not a recipe being reviewed contains peanut butter, 
+which requires the development of a binary classification model. 
+
+The response variable that will be predicted is the value in the contains_pb 
+column, which has the value "True" if the recipe contains peanut butter and 
+"False" otherwise. In predicting this classifier, the hope is to establish a 
+distinction between the two types of recipes as far as identifying them goes.
+
+The primary metric that will be used to evaluate the model is the F1-score, 
+which notably depends on the precision and recall values from the predictions. 
+The F1-score is preferable in this instance because indicates a model's ability 
+to identify recipes with peanut butter both meaningfully well and often. Other 
+metrics, such as accuracy, may not be as suitable since, as seen in the EDA, 
+the dataset is majorly imbalanced toward recipes not containing peanut butter, 
+which could lead to "good" values that arise from the model constantly making 
+the same prediction without actually distinguishing between the groups.
+
+An important consideration to be made for the model training is acknowledging 
+the information that would be known at the "time of prediction", which discerns 
+between information that can be used to make predictions and information that 
+should not be considered for various reasons, such as it not being relevant. 
+For this prediction problem, the information at the "time of prediction" 
+includes the dataset's columns with the exception of the name, description, and
+ingredients columns, which all may explicitly state that a recipe contains 
+peanut butter and are additionally undesired as possible features, so these 
+columns will not be included as model features.
 
 
 
 ## Baseline Model
 
-DESCRIBE MODEL, STATE FEATURES, HOW MANY ARE QUANTITATIVE/ORDINAL/NOMINAL, 
-HOW ENCODINGS PERFORMED; REPORT MODEL PERFORMANCE, WHETHER OR NOT MODEL IS
-GOOD AND WHY
+The baseline model serves as a simple model that aims to provide a minimum 
+performance level for future, more complex models. This model will likely be 
+built upon in future iterations to better understand the nuances of the data.
+
+The baseline model used in this instance is a decision tree classifier with no 
+tuned hyperparameters. Importantly, though, the model will account for the 
+imbalanced data by balancing the class weights, meaning the minority, recipes 
+containing peanut butter, will be "valued" more than the majority, recipes not 
+containing peanut butter, in the training and prediction process.
+The features used are the rating and saturated fat columns, which are both 
+quantitative and not encoded. These features were chosen based on previous 
+analyses that suggested potential differences in the distributions between the 
+two recipe groups.
+
+After train-test splitting the data and fitting the model on the training data, 
+the generated predictions resulted in an F1-score of around 0.03236. 
+Based on this result, it is clear that the model is not very good at 
+classifying the recipes, likely due to a combination of lacking or insufficient 
+features, as well as inadequate performance capabilities that can truly capture 
+insights from the data.
 
 
 
@@ -310,9 +351,77 @@ MODEL'S PERFORMANCE); DESCRIBE CHOSEN MODELING ALGORITHM, HYPERPARAMETERS THAT
 PERFORMED BEST, METHOD USED TO SELECT HYPERPARAMETERS, OVERALL MODEL; DESCRIBE
 HOW FINAL PERFORMANCE IS IMPROVEMENT OVER BASELINE MODEL
 
+Adding onto the baseline model, the selected features include the previous 
+features in addition to the protein, total fat, calories, and sodium columns, 
+which are all quantitative and not encoded. These features were chosen based on 
+an understanding of the macronutrient breakdown of peanut butter and the 
+general characteristics of it as an ingredient. Intuitively, the realization 
+that peanut butter is a food higher in calories, primarily consisting of 
+fat and protein, and often containing considerable amounts of salt, gives way 
+to the inference that recipes using it are likely to reflect these qualities. 
+This is on top of the fact that recipes not containing peanut butter may have 
+alternative ingredients, such as butter, that have differing nutritional 
+profiles that are reflected in the overall recipe. For these reasons, the final 
+model's features are mainly focused on how peanut butter may specifically 
+influence a recipes' nutritional breakdown and contents when predicting.
+
+The chosen modeling algorithm is the ensemble method of random forest, which is 
+more complex and effective at making predictions than a single decision tree.
+The hyperparameter tuning process of grid search was used to identify the best 
+choice for the max depth of the random forest's decision trees out of possible 
+values ranging from 5 to 130, with a step of 20 in between. After performing 
+grid search, the best performing hyperparameter selection was a max depth of 45.
+
+After creating a random forest classifier of 100 decision trees, each with a 
+max depth of 45 and balanced class weights, the model was fit on the same 
+training data to generate predictions on the same test data. When evaluating 
+this final model, the F1-score was found to be around 0.832, which is a large 
+improvement from the baseline model. This result is likely due to the use of 
+more features that are relevant and useful, as well as a more complex algorithm.
+
+The results of the final model's performance indicate that the final model is 
+able to correclty predict whether or not a recipe contains peanut butter at a 
+fairly good rate on the test data. The model's performance still has room for 
+improvement, which could be done through the selection of more or better 
+features, better hyperparameter selections, or a different modeling algorithm.
+
 
 
 ## Fairness Analysis
 
 CLEARLY STATE CHOICE OF X AND Y, EVAL METRIC, HYPOTHESES, TEST STATISTIC, 
 SIGNIFICANCE LEVEL, RESULTING P-VALUE, CONCLUSION
+
+From observing in the EDA that the vast majority of reviews for all recipes had 
+a rating value of 5, one interesting fairness analysis is a comparison of the 
+final model's performance on recipes with a review rating of 5 and recipes 
+with a review rating below 5. Group X is represented by the recipes with a 
+rating of 5, while Group Y is represented by the recipes with a rating below 5.
+The evaluation metric in use is the classifier's recall, which measures the 
+model's ability to identify the recipes containing peanut butter out of all 
+recipes. This metric should ideally maximize the amount of true positives, or 
+recipes containing peanut butter that are correctly identified, which could be 
+seen as particularly valuable in consideration of the imbalanced dataset with 
+a small amount of such recipes.
+
+In performing the fairness analysis through permutation testing, the null 
+hypothesis is that the classifier's recall is the same for reviews of rating 
+below 5 and reviews of rating 5, and any differences are due to random chance. 
+The alternative hypothesis is that the classifier's recall is lower for ratings 
+below 5 than ratings equal to 5, implying that the classifier performs worse on 
+recipes rated below 5.
+The test statistic is the difference in recall between the model's predictions 
+on reviews of rating 5 and reviews of rating below 5, and the significance 
+level is set at alpha = 0.05.
+
+After performing the permutation test, the resulting p-value was found to be 
+around 0.0, meaning there is sufficient evidence to reject the null hypothesis.
+Therefore, it can be said that the model likely has a lower recall, and 
+therefore worse performance, when making predictions for recipes rated below 5 
+when compared to predictions for recipes rated 5. This result could come from 
+the fact that the data consists of mostly reviews of rating 5, allowing the 
+model to have greater exposure to these instances and more opportunities to 
+correcty identify if they contain peanut butter. So, a possible future 
+consideration to improve the collected data could be trying to get more reviews 
+that do not give the recipe a rating of 5, which would provide better 
+representation for these types of reviews and recipes.
