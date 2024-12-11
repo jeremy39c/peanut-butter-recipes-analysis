@@ -42,6 +42,8 @@ Columns:
  - rating (Rating given)
  - avg_rating (Average of ratings given)
 
+
+
 ## Data Cleaning and Exploratory Data Analysis
 
 ### Data Cleaning
@@ -109,9 +111,6 @@ Head of the cleaned DataFrame:
 
 ### Univariate Analysis
 
-PLOT FOR 1 COLUMN, 1-2 sent. explanation w/ description/interpretation
-of trends
-
 <iframe
   src="assets/has_pb_bar.html"
   width="800"
@@ -119,7 +118,10 @@ of trends
   frameborder="0"
 ></iframe>
 
-
+The above barplot displays the distribution of recipes based on their inclusion
+or exclusion of peanut butter. It is found that the vast majority of recipes 
+do not contain peanut butter, with only around 1.06% of the recipes containing 
+peanut butter.
 
 ### Bivariate Analysis
 
@@ -133,6 +135,14 @@ of trends
   frameborder="0"
 ></iframe>
 
+The above histograms display the difference in the distribution of ratings for 
+recipes that contain peanut butter and for those that do not. It can be seen 
+that while the distributions are relatively similar, where the ratings are 
+skewed left and majorly 5's, recipes not containing peanut butter have a 
+slightly higher proportion of 5's (~0.77 vs. ~0.73),which could be an 
+interesting point of consideration when thinking about how recipes in the two 
+groups may be rated differently.
+
 <iframe
   src="assets/sat_fat_by_pb_hist.html"
   width="800"
@@ -140,9 +150,34 @@ of trends
   frameborder="0"
 ></iframe>
 
+The above histograms display how saturated fat content is distributed for 
+recipes containing and not containing peanut butter. While both plots show a 
+right-skewed shape, there appears to be a slight difference in the 
+distributions in that the plot for peanut butter recipes is more jagged or 
+bumpy and less smooth. It is important to consider that this observation could
+stem from the fact that there are many more recipes without peanut butter, 
+meaning the smoother distribution could be the result of having more points.
+
 ### Interesting Aggregates
 
-GROUPED/PIVOT TABLE, explanation of significance
+|   avg_rating Mean |
+|------------------:|
+|           4.53571 |
+|           4.62482 |
+
+The above
+
+|   avg_rating Mean |
+|------------------:|
+|           4.53571 |
+|           4.62482 |
+|   saturated fat Mean |
+|---------------------:|
+|              28.2987 |
+|              33.4937 |
+
+The above
+
 
 
 
